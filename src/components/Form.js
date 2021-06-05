@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 const Form = ({ setSaveDataForm }) => {
 	const [dataForm, setDataForm] = useState({
@@ -80,6 +81,10 @@ const Form = ({ setSaveDataForm }) => {
 			</div>
 		</div>
 	);
+};
+
+Form.propTypes = {
+	setSaveDataForm: PropTypes.func.isRequired
 };
 
 export default Form;
