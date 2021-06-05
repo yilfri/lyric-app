@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import Form from './components/Form';
+import Song from './components/Song';
 
 function App() {
 	const [saveDataForm, setSaveDataForm] = useState({});
@@ -13,9 +14,9 @@ function App() {
 			const { artist, song } = saveDataForm;
 
 			const url = `https://api.lyrics.ovh/v1/${artist}/${song}`;
-			const res = await axios.get(url.data.lyrics);
+			const res = await axios.get(url);
 
-			setLyric(res);
+			setLyric(res.data.lyrics);
 		};
 		getApiLyrics();
 	}, [saveDataForm]);
@@ -23,6 +24,15 @@ function App() {
 	return (
 		<>
 			<Form setSaveDataForm={setSaveDataForm} />
+
+			<div className="container mt-5">
+				<div className="row">
+					<div className="col-md-6"></div>
+					<div className="col-md-6">
+						<Song lyric={lyric} />
+					</div>
+				</div>
+			</div>
 		</>
 	);
 }
